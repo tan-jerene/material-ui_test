@@ -217,6 +217,8 @@ class Chip extends Component {
     const {prepareStyles} = this.context.muiTheme;
     const styles = this.context.styleManager.render(styleSheet, { group: 'mui' }); //New change
 
+    console.log(styles);
+
     let {children, style, className, labelStyle, ...other} = this.props;
     const deletable = this.props.onRequestDelete;
     let avatar = null;
