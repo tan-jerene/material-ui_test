@@ -16,7 +16,6 @@ describe('<Checkbox>', () => {
     mount = createMountWithContext();
     classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
   });
-  
   after(() => mount.cleanUp());
 
   it('should render an IconButton', () => {

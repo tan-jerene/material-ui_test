@@ -5,8 +5,7 @@ import { createStyleSheet } from 'stylishly';
 import Text from 'material-ui/Text';
 import Button from 'material-ui/Button';
 
-// import muiLogo from '../../assets/images/material-ui-logo.svg';
-const muiLogo = '';
+import muiLogo from '../../assets/images/material-ui-logo.svg';
 
 export const styleSheet = createStyleSheet('Home', (theme) => {
   const { palette, breakpoints } = theme;

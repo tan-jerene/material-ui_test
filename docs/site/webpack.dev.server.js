@@ -12,7 +12,7 @@ const serverOptions = {
 };
 
 new WebpackDevServer(webpack(webpackConfig), serverOptions)
-  .listen(9550, '0.0.0.0', (err) => {
+  .listen(3000, 'localhost', (err) => {
     if (err) {
       return console.log(err); // eslint-disable-line no-console
     }

@@ -1,6 +1,6 @@
 // @flow weak
 
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'stylishly';
 import classNames from 'classnames';
 import Paper from '../Paper';

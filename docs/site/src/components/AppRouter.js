@@ -113,7 +113,6 @@ export default class AppRouter extends Component {
                   key={i}
                   title={titleize(n.name)}
                   path={`/component-demos/${n.name}`}
-                  console.log(n.name);
                   content={requireDemos(n.path)}
                   component={MarkdownDocs}
                   nav />

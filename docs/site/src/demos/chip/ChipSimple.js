@@ -1,22 +1,24 @@
 // @flow weak
 
+import Avatar from 'material-ui/Avatar';
 import React, { PropTypes, Component } from 'react';
 import { createStyleSheet } from 'stylishly';
 import Chip from 'material-ui/Chip';
+import SvgIconFace from 'material-ui/svg-icons/action/face';
 import {blue300, indigo900} from 'material-ui/styles/colors';
 
-const styleSheet = createStyleSheet('Chips', () => {
-  return {
-    chip: {
-      margin: 4,
-    },
-    wrapper: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-  };
+const styleSheet = createStyleSheet('ChipSimple', () => {
+     return {
+	  chip: {
+	    margin: 4,
+	  },
+	  wrapper: {
+	    display: 'flex',
+	    flexWrap: 'wrap',
+	  },
+     };
 });
-
+ 
 function handleRequestDelete() {
   alert('You clicked the delete button.');
 }
@@ -31,10 +33,13 @@ function handleTouchTap() {
  *
  * Chips with the `onRequestDelete` property defined will display a delete icon.
  */
-export default class Chips extends Component {
+export default class ChipSimple extends Component {
+  static contextTypes = {
+    styleManager: PropTypes.object.isRequired,
+  };
 
   render() {
-  const classes = context.styleManager.render(styleSheet);
+    const styles = this.context.styleManager.render(styleSheet);
     return (
       <div style={styles.wrapper}>
 
@@ -53,10 +58,10 @@ export default class Chips extends Component {
         </Chip>
 
         <Chip
-          //onTouchTap={handleTouchTap}
+          onTouchTap={handleTouchTap}
           style={styles.chip}
         >
-          //<Avatar src="images/uxceo-128.jpg" />
+          <Avatar src="images/uxceo-128.jpg" />
           Image Avatar Chip
         </Chip>
 
@@ -65,16 +70,8 @@ export default class Chips extends Component {
           onTouchTap={handleTouchTap}
           style={styles.chip}
         >
-          //<Avatar src="images/ok-128.jpg" />
+          <Avatar src="images/ok-128.jpg" />
           Deletable Avatar Chip
-        </Chip>
-
-        <Chip
-          onTouchTap={handleTouchTap}
-          style={styles.chip}
-        >
-          //<Avatar icon={<FontIcon className="material-icons">perm_identity</FontIcon>} />
-          FontIcon Avatar Chip
         </Chip>
 
         <Chip
@@ -82,12 +79,12 @@ export default class Chips extends Component {
           onTouchTap={handleTouchTap}
           style={styles.chip}
         >
-          //<Avatar color="#444" icon={<SvgIconFace />} />
+          <Avatar color="#444" icon={<SvgIconFace />} />
           SvgIcon Avatar Chip
         </Chip>
 
         <Chip onTouchTap={handleTouchTap} style={styles.chip}>
-          //<Avatar size={32}>A</Avatar>
+          <Avatar size={32}>A</Avatar>
           Text Avatar Chip
         </Chip>
 
@@ -97,9 +94,9 @@ export default class Chips extends Component {
           onTouchTap={handleTouchTap}
           style={styles.chip}
         >
-          //<Avatar size={32} color={blue300} backgroundColor={indigo900}>
-          //  MB
-          //</Avatar>
+          <Avatar size={32} color={blue300} backgroundColor={indigo900}>
+            MB
+          </Avatar>
           Colored Chip
         </Chip>
       </div>
