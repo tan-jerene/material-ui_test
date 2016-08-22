@@ -34,6 +34,7 @@ export default class Alerts extends Component {
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
+    console.log(classes);
     return (
       <div>
         <Button onClick={() => this.setState({ open: true })}>

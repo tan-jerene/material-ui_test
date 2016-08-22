@@ -10,6 +10,8 @@ Examples of Chips, using an image Avatar, Font Icon Avatar, SVG Icon Avatar, "Le
 
 Chips with the onRequestDelete property defined will display a delete icon.
 
-{{demo='chip/ChipSimple.js'}}
+{{demo='chips/ChipSimple.js'}}
+
+## Testing testing 1-2--3---
 
 

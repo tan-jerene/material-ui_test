@@ -14,6 +14,7 @@ const styleSheet = createStyleSheet('FlatButtons', () => {
 
 export default function FlatButtons(props, context) {
   const classes = context.styleManager.render(styleSheet);
+  console.log(classes);
   return (
     <div>
       <Button className={classes.button}>Default</Button>

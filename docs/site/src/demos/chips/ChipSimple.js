@@ -40,11 +40,12 @@ export default class ChipSimple extends Component {
 
   render() {
     const styles = this.context.styleManager.render(styleSheet);
+    //console.log(styles);
     return (
-      <div style={styles.wrapper}>
+      <div className={styles.wrapper}>
 
         <Chip
-          style={styles.chip}
+          className={styles.chip}
         >
           Text Chip
         </Chip>
@@ -52,14 +53,14 @@ export default class ChipSimple extends Component {
         <Chip
           onRequestDelete={handleRequestDelete}
           onTouchTap={handleTouchTap}
-          style={styles.chip}
+          className={styles.chip}
         >
           Deletable Text Chip
         </Chip>
 
         <Chip
           onTouchTap={handleTouchTap}
-          style={styles.chip}
+          className={styles.chip}
         >
           <Avatar src="images/uxceo-128.jpg" />
           Image Avatar Chip
@@ -68,7 +69,7 @@ export default class ChipSimple extends Component {
         <Chip
           onRequestDelete={handleRequestDelete}
           onTouchTap={handleTouchTap}
-          style={styles.chip}
+          className={styles.chip}
         >
           <Avatar src="images/ok-128.jpg" />
           Deletable Avatar Chip
@@ -92,7 +93,7 @@ export default class ChipSimple extends Component {
           backgroundColor={blue300}
           onRequestDelete={handleRequestDelete}
           onTouchTap={handleTouchTap}
-          style={styles.chip}
+          className={styles.chip}
         >
           <Avatar size={32} color={blue300} backgroundColor={indigo900}>
             MB
