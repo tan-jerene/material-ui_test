@@ -1,7 +1,7 @@
 import React from 'react';
 import Avatar from 'material-ui/Avatar';
 import FileFolder from 'material-ui/svg-icons/file/folder';
-import FontIcon from 'material-ui/FontIcon';
+//import FontIcon from 'material-ui/FontIcon';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 
@@ -37,28 +37,6 @@ const AvatarExampleSimple = () => (
       }
     >
       Image Avatar with custom size
-    </ListItem>
-    <ListItem
-      disabled={true}
-      leftAvatar={
-        <Avatar icon={<FontIcon className="muidocs-icon-communication-voicemail" />} />
-      }
-    >
-      FontIcon Avatar
-    </ListItem>
-    <ListItem
-      disabled={true}
-      leftAvatar={
-        <Avatar
-          icon={<FontIcon className="muidocs-icon-communication-voicemail" />}
-          color={blue300}
-          backgroundColor={indigo900}
-          size={30}
-          style={style}
-        />
-      }
-    >
-      FontIcon Avatar with custom colors and size
     </ListItem>
     <ListItem
       disabled={true}

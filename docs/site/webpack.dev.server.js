@@ -12,10 +12,10 @@ const serverOptions = {
 };
 
 new WebpackDevServer(webpack(webpackConfig), serverOptions)
-  .listen(3000, 'localhost', (err) => {
+  .listen(9000, 'localhost', (err) => {
     if (err) {
       return console.log(err); // eslint-disable-line no-console
     }
 
-    return console.info('Webpack dev server listening at http://localhost:3000/'); // eslint-disable-line no-console
+    return console.info('Webpack dev server listening at http://localhost:9000/'); // eslint-disable-line no-console
   });
