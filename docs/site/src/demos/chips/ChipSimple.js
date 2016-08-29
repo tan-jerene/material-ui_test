@@ -7,8 +7,7 @@ import Chip from 'material-ui/Chip';
 import SvgIconFace from 'material-ui/svg-icons/action/face';
 import {blue300, indigo900} from 'material-ui/styles/colors';
 
-const styleSheet = createStyleSheet('ChipSimple', () => {
-     return {
+const styleSheet = createStyleSheet('ChipSimple', () => ({
 	  chip: {
 	    margin: 4,
 	  },
@@ -16,8 +15,7 @@ const styleSheet = createStyleSheet('ChipSimple', () => {
 	    display: 'flex',
 	    flexWrap: 'wrap',
 	  },
-     };
-});
+}));
  
 function handleRequestDelete() {
   alert('You clicked the delete button.');
@@ -33,12 +31,7 @@ function handleTouchTap() {
  *
  * Chips with the `onRequestDelete` property defined will display a delete icon.
  */
-export default class ChipSimple extends Component {
-  static contextTypes = {
-    styleManager: PropTypes.object.isRequired,
-  };
-
-  render() {
+export default function ChipSimple(props, context) {
     const styles = this.context.styleManager.render(styleSheet);
     //console.log(styles);
     return (
@@ -102,5 +95,8 @@ export default class ChipSimple extends Component {
         </Chip>
       </div>
     );
-  }
 }
+
+ChipSimple.contextTypes = {
+    styleManager: PropTypes.object.isRequired,
+};
