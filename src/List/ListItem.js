@@ -14,6 +14,9 @@ export const styleSheet = createStyleSheet('ListItem', (theme) => {
       paddingBottom: 8,
       textDecoration: 'none',
     },
+    leftAvatar: {
+      left: 16,
+    }, //new addition
     gutters: theme.mixins.gutters({}),
   };
 });
@@ -23,11 +26,13 @@ export default class ListItem extends Component {
     children: PropTypes.node,
     className: PropTypes.string,
     component: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    leftAvatar: PropTypes.element, //new addition
     gutters: PropTypes.bool,
   };
 
   static defaultProps = {
     component: 'div',
+    //leftAvatar: false,
     gutters: true,
   };
 
@@ -39,12 +44,14 @@ export default class ListItem extends Component {
     const {
       className: classNameProp,
       component,
+      leftAvatar, //new addition
       gutters,
       ...other,
     } = this.props;
     const classes = this.context.styleManager.render(styleSheet, { group: 'mui' });
     const className = classNames(classes.root, {
       [classes.gutters]: gutters,
+      [classes.leftAvatar]: leftAvatar, //new addition
     }, classNameProp);
 
     return React.createElement(component, { className, ...other });
