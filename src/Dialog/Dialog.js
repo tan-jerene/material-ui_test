@@ -139,7 +139,7 @@ export default class Dialog extends Component {
       transitionDuration,
       ...other,
     } = this.props;
-
+    console.log(this.context.styleManager);
     const classes = this.context.styleManager.render(styleSheet);
 
     const transitionProps = {

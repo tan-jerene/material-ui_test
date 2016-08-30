@@ -32,7 +32,7 @@ function handleTouchTap() {
  * Chips with the `onRequestDelete` property defined will display a delete icon.
  */
 export default function ChipSimple(props, context) {
-    const styles = this.context.styleManager.render(styleSheet);
+    const styles = context.styleManager.render(styleSheet);
     //console.log(styles);
     return (
       <div className={styles.wrapper}>
@@ -44,15 +44,12 @@ export default function ChipSimple(props, context) {
         </Chip>
 
         <Chip
-          onRequestDelete={handleRequestDelete}
-          onTouchTap={handleTouchTap}
           className={styles.chip}
         >
           Deletable Text Chip
         </Chip>
 
         <Chip
-          onTouchTap={handleTouchTap}
           className={styles.chip}
         >
           <Avatar src="images/uxceo-128.jpg" />
@@ -60,8 +57,6 @@ export default function ChipSimple(props, context) {
         </Chip>
 
         <Chip
-          onRequestDelete={handleRequestDelete}
-          onTouchTap={handleTouchTap}
           className={styles.chip}
         >
           <Avatar src="images/ok-128.jpg" />
@@ -69,26 +64,20 @@ export default function ChipSimple(props, context) {
         </Chip>
 
         <Chip
-          onRequestDelete={handleRequestDelete}
-          onTouchTap={handleTouchTap}
-          style={styles.chip}
+          className={styles.chip}
         >
-          <Avatar color="#444" icon={<SvgIconFace />} />
           SvgIcon Avatar Chip
         </Chip>
 
-        <Chip onTouchTap={handleTouchTap} style={styles.chip}>
+        <Chip className={styles.chip}>
           <Avatar size={32}>A</Avatar>
           Text Avatar Chip
         </Chip>
 
         <Chip
-          backgroundColor={blue300}
-          onRequestDelete={handleRequestDelete}
-          onTouchTap={handleTouchTap}
           className={styles.chip}
         >
-          <Avatar size={32} color={blue300} backgroundColor={indigo900}>
+          <Avatar size={32} color={blue300} >
             MB
           </Avatar>
           Colored Chip

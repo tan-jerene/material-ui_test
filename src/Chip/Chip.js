@@ -229,7 +229,8 @@ class Chip extends Component {
     };
 
     //const {prepareStyles} = this.context.muiTheme;
-    const styles = this.context.styleManager.render(styleSheet, { group: 'mui' }); //New change
+    console.log(this.context.styleManager);
+    const styles = this.context.styleManager.render(styleSheet); //New change
 
     //console.log(styles);
 
