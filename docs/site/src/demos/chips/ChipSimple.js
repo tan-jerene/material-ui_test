@@ -9,7 +9,7 @@ import {blue300, indigo900} from 'material-ui/styles/colors';
 
 const styleSheet = createStyleSheet('ChipSimple', () => ({
 	  chip: {
-	    margin: 4,
+	    margin: '4 px',
 	  },
 	  wrapper: {
 	    display: 'flex',
@@ -33,7 +33,7 @@ function handleTouchTap() {
  */
 export default function ChipSimple(props, context) {
     const styles = context.styleManager.render(styleSheet);
-    //console.log(styles);
+
     return (
       <div className={styles.wrapper}>
 
@@ -44,28 +44,36 @@ export default function ChipSimple(props, context) {
         </Chip>
 
         <Chip
+          onRequestDelete={handleRequestDelete}
+          onTouchTap={handleTouchTap}
           className={styles.chip}
         >
           Deletable Text Chip
         </Chip>
 
         <Chip
+          onTouchTap={handleTouchTap}
           className={styles.chip}
         >
-          <Avatar src="images/uxceo-128.jpg" />
+          <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/rem/73.jpg" />
           Image Avatar Chip
         </Chip>
 
         <Chip
+          onRequestDelete={handleRequestDelete}
+          onTouchTap={handleTouchTap}
           className={styles.chip}
         >
-          <Avatar src="images/ok-128.jpg" />
+          <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg" />
           Deletable Avatar Chip
         </Chip>
 
         <Chip
+          onRequestDelete={handleRequestDelete}
+          onTouchTap={handleTouchTap}
           className={styles.chip}
         >
+          <Avatar color="#444" icon={<SvgIconFace />} />
           SvgIcon Avatar Chip
         </Chip>
 
@@ -75,6 +83,9 @@ export default function ChipSimple(props, context) {
         </Chip>
 
         <Chip
+          backgroundColor={blue300}
+          onRequestDelete={handleRequestDelete}
+          onTouchTap={handleTouchTap}
           className={styles.chip}
         >
           <Avatar size={32} color={blue300} >

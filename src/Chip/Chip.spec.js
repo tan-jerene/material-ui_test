@@ -1,4 +1,5 @@
-//next branch version Chip.spec.js
+// @flow weak
+/* eslint-env mocha */
 
 import React from 'react';
 import { assert } from 'chai';
@@ -9,12 +10,12 @@ const Avatar = (props) => <div {...props} />;
 Avatar.muiName = 'Avatar';
 
 describe('<Chip>', () => {
-	let shallow;
+	let themedShallow;
 	let classes;
 
 	before(() => {
-	    themedShallow = createShallowWithContext();
-	    classes = shallow.context.styleManager.render(styleSheet, { group: 'mui' });
+	    themedShallow = createShallowWithContext(); 
+	    classes = themedShallow.context.styleManager.render(styleSheet); //changed from themedShallow
   	});
 
   	after(() => mount.cleanUp());

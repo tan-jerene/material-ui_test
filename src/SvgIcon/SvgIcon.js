@@ -49,7 +49,7 @@ class SvgIcon extends Component {
   };
 
   static contextTypes = {
-    muiTheme: PropTypes.object.isRequired,
+    styleManager: PropTypes.object.isRequired,
   };
 
   state = {
@@ -77,15 +77,15 @@ class SvgIcon extends Component {
       viewBox,
       ...other,
     } = this.props;
-
+    //console.log(this.context);
     const {
-      baseTheme,
-      prepareStyles,
-    } = this.context.muiTheme;
+      theme,
+      prepareInline,
+    } = this.context.styleManager;
 
     const offColor = color ? color :
       style && style.fill ? style.fill :
-      baseTheme.palette.textColor;
+      theme.palette.textColor;
     const onColor = hoverColor ? hoverColor : offColor;
 
     const mergedStyles = Object.assign({
@@ -94,7 +94,7 @@ class SvgIcon extends Component {
       height: 24,
       width: 24,
       userSelect: 'none',
-      transition: transitions.easeOut(),
+      transition: transitions.multi(),
     }, style);
 
     return (
@@ -102,7 +102,7 @@ class SvgIcon extends Component {
         {...other}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
-        style={prepareStyles(mergedStyles)}
+        style={prepareInline(mergedStyles)}
         viewBox={viewBox}
       >
         {children}

@@ -4,25 +4,11 @@ import React, { Component, PropTypes } from 'react';
 import { createStyleSheet } from 'jss-theme-reactor';
 import classNames from 'classnames';
 import Button from '../Button';
+import keycode from 'keycode';
 import {fade, emphasize} from '../utils/colorManipulator';
 import DeleteIcon from '../svg-icons/navigation/cancel';
 
-const state = {
-    clicked: false,
-
-    deleteHovered: false,
-
-    focused: false,
-
-    hovered: false,
-
-  };
-
-export const styleSheet = createStyleSheet('Chip', (theme) => {
-
-	console.log(theme);
-
-	//const {chip} = theme;
+export const styleSheet = createStyleSheet('Chip', () => { //31-08-2016
 
 	const backgroundColor = 'rgb(224, 224, 224)';
 	const focusColor = emphasize(backgroundColor, 0.08);
@@ -30,28 +16,28 @@ export const styleSheet = createStyleSheet('Chip', (theme) => {
 
 	return {
 	    avatar: {
-		    marginRight: -4,
+		    marginRight: '-4px',
 	    },
 	    deleteIcon: {
-		    color: (state.deleteHovered) ? fade("rgba(0,0,0,0.26)", 0.4) : "rgba(0,0,0,0.26)",
+		    color: fade("rgba(0,0,0,0.26)", 0.4),
 		    cursor: 'pointer',
 		    margin: '4px 4px 0px -8px',
 	    },
 	    label: {
 		    color: "rgba(0,0,0,0.87)",
-		    fontSize: 14,
-		    fontWeight: 400,
+		    fontSize: '14px',
+		    fontWeight: 4,
 		    lineHeight: '32px',
-		    paddingLeft: 12,
-		    paddingRight: 12,
+		    paddingLeft: '12px',
+		    paddingRight: '12px',
 		    userSelect: 'none',
 		    whiteSpace: 'nowrap',
 	    },
 	    root: {
-		    backgroundColor: state.clicked ? pressedColor : (state.focused || state.hovered) ? focusColor : backgroundColor,
-		    borderRadius: 16,
-		    boxShadow: state.clicked ? "0 1px 6px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.12)" : null,
-		    //cursor: props.onTouchTap ? 'pointer' : 'default',
+		    backgroundColor: pressedColor,
+		    borderRadius: '16px',
+		    boxShadow:  "0px 1px 6px rgba(0,0,0,0.12), 0px 1px 4px rgba(0,0,0,0.12)",
+		    cursor: 'pointer',
 		    display: 'flex',
 		    whiteSpace: 'nowrap',
 		    width: 'fit-content',
@@ -59,7 +45,7 @@ export const styleSheet = createStyleSheet('Chip', (theme) => {
   	};
 });
 
-class Chip extends Component {
+export default class Chip extends Component { //30-08-2016
   static propTypes = {
     /**
      * Override the background color of the chip.
@@ -88,7 +74,7 @@ class Chip extends Component {
     /** @ignore */
     onKeyDown: PropTypes.func,
     /** @ignore */
-    //onKeyboardFocus: PropTypes.func,
+    //onKeyboardFocus: PropTypes.func, //30-08-2016
     /** @ignore */
     onMouseDown: PropTypes.func,
     /** @ignore */
@@ -101,7 +87,7 @@ class Chip extends Component {
      * Callback function fired when the delete icon is clicked. If set, the delete icon will be shown.
      * @param {object} event `touchTap` event targeting the element.
      */
-    //onRequestDelete: PropTypes.func,
+    onRequestDelete: PropTypes.func, //30-08-2016
     /** @ignore */
     onTouchEnd: PropTypes.func,
     /** @ignore */
@@ -118,6 +104,26 @@ class Chip extends Component {
     style: PropTypes.object,
   };
 
+  static defaultProps = {
+    onBlur: () => {},
+    onFocus: () => {},
+    onKeyDown: () => {},
+    onKeyboardFocus: () => {},
+    onMouseDown: () => {},
+    onMouseEnter: () => {},
+    onMouseLeave: () => {},
+    onMouseUp: () => {},
+    onTouchEnd: () => {},
+    onTouchStart: () => {},
+  };
+
+  state = {
+    clicked: false,
+    deleteHovered: false,
+    focused: false,
+    hovered: false,
+  };
+
   static contextTypes = {
     styleManager: PropTypes.object.isRequired,
   };
@@ -129,29 +135,18 @@ class Chip extends Component {
   };
 
   handleFocus = (event) => {
-    if (this.props.onTouchTap/* || this.props.onRequestDelete*/) {
+    if (this.props.onTouchTap || this.props.onRequestDelete) {
       this.setState({focused: true});
     }
     this.props.onFocus(event);
   };
-/*
-  handleKeyboardFocus = (event, keyboardFocused) => {
-    if (keyboardFocused) {
-      this.handleFocus();
-      this.props.onFocus(event);
-    } else {
-      this.handleBlur();
-    }
 
-    this.props.onKeyboardFocus(event, keyboardFocused);
-  };
-*/
   handleKeyDown = (event) => {
     if (keycode(event) === 'backspace') {
-      event.preventDefault(); /*
-      if (this.props.onRequestDelete) {
+      event.preventDefault(); 
+      if (this.props.onRequestDelete) { //30-08-2016
         this.props.onRequestDelete(event);
-      }*/
+      }
     }
     this.props.onKeyDown(event);
   };
@@ -161,6 +156,7 @@ class Chip extends Component {
     if (event.button === 0) {
       event.stopPropagation();
       if (this.props.onTouchTap) {
+	this.props.onTouchTap();
         this.setState({clicked: true});
       }
     }
@@ -198,7 +194,7 @@ class Chip extends Component {
   handleTouchTapDeleteIcon = (event) => {
     // Stop the event from bubbling up to the `Chip`
     event.stopPropagation();
-    //this.props.onRequestDelete(event);
+    this.props.onRequestDelete(event); //30-08-2016
   };
 
   handleTouchEnd = (event) => {
@@ -215,7 +211,8 @@ class Chip extends Component {
   };
 
   render() {
-    const buttonEventHandlers = {
+
+    const buttonEventHandlers = { 
       onBlur: this.handleBlur,
       onFocus: this.handleFocus,
       onKeyDown: this.handleKeyDown,
@@ -228,27 +225,27 @@ class Chip extends Component {
       //onKeyboardFocus: this.handleKeyboardFocus,
     };
 
-    //const {prepareStyles} = this.context.muiTheme;
-    console.log(this.context.styleManager);
+    
+
+    //const {prepareStyles} = this.context.styleManager;
     const styles = this.context.styleManager.render(styleSheet); //New change
 
-    //console.log(styles);
 
-    let {children, style, className, labelStyle, ...other} = this.props;
-    console.log(this.props);
+    let {children, style, className, labelStyle, ...other} = this.props; //31-08-2016
+
     const deletable = this.props.onRequestDelete;
     let avatar = null;
 
-    //style = Object.assign(styles.root, style);
-    //labelStyle = prepareStyles(Object.assign(styles.label, labelStyle));
-/*
+    style = Object.assign(styles.root, style);
+    labelStyle = this.context.styleManager.prepareInline(Object.assign(styles.label, labelStyle)); //************************
+/* 30-08-2016
     const className = classNames(styles.root, {
       [styles.clicked]: disabled,
       [styles.deleteHovered]: checked,
       [styles.focused]: checked,
       [styles.hovered]: checked,
     }, classNameProp);
-*/
+*/  
     const deleteIcon = deletable ?
       <DeleteIcon
         color={styles.deleteIcon.color}
@@ -280,17 +277,16 @@ class Chip extends Component {
         {...other}
         {...buttonEventHandlers}
         className={className}
-        //containerElement="div" // Firefox doesn't support nested buttons
-        ripple={true}
-        focusRipple={true}
+        ripple={false}
+        focusRipple={false}
         style={style}
       >
         {avatar}
-        <span className={styles.label}>{children}</span>
+        <span style={labelStyle}>{children}</span>
         {deleteIcon}
       </Button>
     );
   }
 }
 
-export default Chip;
+//export default Chip;
