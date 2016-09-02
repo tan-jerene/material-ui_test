@@ -36,7 +36,7 @@ export const styleSheet = createStyleSheet('Chip', () => { //31-08-2016
 	    root: {
 		    backgroundColor: pressedColor,
 		    borderRadius: '16px',
-		    boxShadow:  "0px 1px 6px rgba(0,0,0,0.12), 0px 1px 4px rgba(0,0,0,0.12)",
+		    boxShadow: "0px 1px 6px rgba(0,0,0,0.12), 0px 1px 4px rgba(0,0,0,0.12)",
 		    cursor: 'pointer',
 		    display: 'flex',
 		    whiteSpace: 'nowrap',
@@ -228,16 +228,20 @@ export default class Chip extends Component { //30-08-2016
     
 
     //const {prepareStyles} = this.context.styleManager;
-    const styles = this.context.styleManager.render(styleSheet); //New change
-
+    const classes = this.context.styleManager.render(styleSheet); //New change
 
     let {children, style, className, labelStyle, ...other} = this.props; //31-08-2016
 
     const deletable = this.props.onRequestDelete;
     let avatar = null;
-
-    style = Object.assign(styles.root, style);
-    labelStyle = this.context.styleManager.prepareInline(Object.assign(styles.label, labelStyle)); //************************
+    console.log(classes, "******************************");
+    /*if(className == undefined){
+	className = className(classes.root, className);
+    }*/
+    //console.log(style, "*******************************************");
+    //style = Object.assign({}, style);
+    //console.log(style);
+    labelStyle = this.context.styleManager.prepareInline(Object.assign(classes.label, labelStyle)); //************************
 /* 30-08-2016
     const className = classNames(styles.root, {
       [styles.clicked]: disabled,
@@ -248,8 +252,8 @@ export default class Chip extends Component { //30-08-2016
 */  
     const deleteIcon = deletable ?
       <DeleteIcon
-        color={styles.deleteIcon.color}
-        className={styles.deleteIcon}
+        color={classes.deleteIcon.color}
+        className={classes.deleteIcon}
         onTouchTap={this.handleTouchTapDeleteIcon}
         onMouseEnter={this.handleMouseEnterDeleteIcon}
         onMouseLeave={this.handleMouseLeaveDeleteIcon}
@@ -261,12 +265,11 @@ export default class Chip extends Component { //30-08-2016
     // If the first child is an avatar, extract it and style it
     if (childCount > 1) {
       children = React.Children.toArray(children);
-
-      if (React.isValidElement(children[0]) && children[0].type.muiName === 'Avatar') {
+      console.log(children[0]);
+      if (React.isValidElement(children[0]) && children[0].type.name === 'Avatar') {
         avatar = children.shift();
-
         avatar = React.cloneElement(avatar, {
-          style: Object.assign(styles.avatar, avatar.props.style),
+          className: classes.avatar,
           size: 32,
         });
       }
@@ -276,13 +279,13 @@ export default class Chip extends Component { //30-08-2016
       <Button
         {...other}
         {...buttonEventHandlers}
-        className={className}
+        className={classes.root}
         ripple={false}
         focusRipple={false}
         style={style}
       >
         {avatar}
-        <span style={labelStyle}>{children}</span>
+        <span className={classes.label}>{children}</span>
         {deleteIcon}
       </Button>
     );
