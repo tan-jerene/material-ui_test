@@ -45,14 +45,14 @@ export default function ChipSimple(props, context) {
 
         <Chip
           onRequestDelete={handleRequestDelete}
-          onTouchTap={handleTouchTap}
+          onChip={handleTouchTap}
           className={styles.chip}
         >
           Deletable Text Chip
         </Chip>
 
         <Chip
-          onTouchTap={handleTouchTap}
+          onClick={handleTouchTap}
           className={styles.chip}
         >
           <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/rem/73.jpg" />
@@ -61,7 +61,7 @@ export default function ChipSimple(props, context) {
 
         <Chip
           onRequestDelete={handleRequestDelete}
-          onTouchTap={handleTouchTap}
+          onClick={handleTouchTap}
           className={styles.chip}
         >
           <Avatar src="https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg" />
@@ -70,7 +70,7 @@ export default function ChipSimple(props, context) {
 
         <Chip
           onRequestDelete={handleRequestDelete}
-          onTouchTap={handleTouchTap}
+          onClick={handleTouchTap}
           className={styles.chip}
         >
           <Avatar color="#444" icon={<SvgIconFace />} />

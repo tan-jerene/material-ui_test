@@ -97,7 +97,7 @@ export default class Chip extends Component { //30-08-2016
      *
      * @param {object} event TouchTap event targeting the element.
      */
-    onTouchTap: PropTypes.func,
+    onClick: PropTypes.func,
     /**
      * Override the inline-styles of the root element.
      */
@@ -135,7 +135,7 @@ export default class Chip extends Component { //30-08-2016
   };
 
   handleFocus = (event) => {
-    if (this.props.onTouchTap || this.props.onRequestDelete) {
+    if (this.props.onClick || this.props.onRequestDelete) {
       this.setState({focused: true});
     }
     this.props.onFocus(event);
@@ -155,8 +155,8 @@ export default class Chip extends Component { //30-08-2016
     // Only listen to left clicks
     if (event.button === 0) {
       event.stopPropagation();
-      if (this.props.onTouchTap) {
-	this.props.onTouchTap();
+      if (this.props.onClick) {
+	this.props.onClick();
         this.setState({clicked: true});
       }
     }
@@ -164,7 +164,7 @@ export default class Chip extends Component { //30-08-2016
   };
 
   handleMouseEnter = (event) => {
-    if (this.props.onTouchTap) {
+    if (this.props.onClick) {
       this.setState({hovered: true});
     }
     this.props.onMouseEnter(event);
@@ -204,7 +204,7 @@ export default class Chip extends Component { //30-08-2016
 
   handleTouchStart = (event) => {
     event.stopPropagation();
-    if (this.props.onTouchTap) {
+    if (this.props.onClick) {
       this.setState({clicked: true});
     }
     this.props.onTouchStart(event);
@@ -254,7 +254,7 @@ export default class Chip extends Component { //30-08-2016
       <DeleteIcon
         color={classes.deleteIcon.color}
         className={classes.deleteIcon}
-        onTouchTap={this.handleTouchTapDeleteIcon}
+        onClick={this.handleTouchTapDeleteIcon}
         onMouseEnter={this.handleMouseEnterDeleteIcon}
         onMouseLeave={this.handleMouseLeaveDeleteIcon}
       /> :
